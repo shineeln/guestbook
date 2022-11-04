@@ -1,11 +1,15 @@
 package kr.or.connect.guestbook.config;
 
+import kr.or.connect.guestbook.argumentresolver.HeaderMapArgumentResolver;
 import kr.or.connect.guestbook.interceptor.LogInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -44,4 +48,9 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new LogInterceptor());
     }
 
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        System.out.println("아규먼트 리졸버 등록..");
+        argumentResolvers.add(new HeaderMapArgumentResolver());
+    }
 }

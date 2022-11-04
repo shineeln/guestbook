@@ -1,5 +1,6 @@
 package kr.or.connect.guestbook.controller;
 
+import kr.or.connect.guestbook.argumentresolver.HeaderInfo;
 import kr.or.connect.guestbook.dto.Guestbook;
 import kr.or.connect.guestbook.service.GuestbookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,13 @@ public class GuestbookController {
             @RequestParam(name="start", required=false, defaultValue="0") int start,
             ModelMap model,
             HttpServletRequest request,
-            HttpServletResponse response
+            HttpServletResponse response,
+            HeaderInfo headerInfo
     ) {
+        System.out.println("-----------------------------------------------------");
+        System.out.println(headerInfo.get("user-agent"));
+        System.out.println("-----------------------------------------------------");
+
         String value = null;
         boolean find = false;
         Cookie[] cookies = request.getCookies();
