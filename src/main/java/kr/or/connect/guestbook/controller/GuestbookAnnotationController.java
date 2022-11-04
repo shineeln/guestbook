@@ -22,7 +22,7 @@ public class GuestbookAnnotationController {
     public String list(
             @RequestParam(name="start", required=false, defaultValue="0") int start,
             ModelMap model,
-            @CookieValue(value="count", defaultValue = "1", required = true) String value,
+            @CookieValue(value="count", defaultValue = "0", required = true) String value,
             HttpServletResponse response
     ) {
         try {
